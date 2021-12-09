@@ -13,8 +13,29 @@ import USER_UPDATEcomments from '../vue/USER_UPDATEcomments.vue'
 import USER_UPDATEinfos from '../vue/USER_UPDATEinfos.vue'
 import USER_UPDATEposts from '../vue/USER_UPDATEposts.vue'
 
+import { createRouter, createWebHistory } from 'vue-router'
+
+import Connexion from '@/views/Connexion.vue';
+import postimageVue from '../views/postimage.vue'
+import EditbackVue from '../views/Editback.vue'
+
 
 const routes = [
+  {
+    name: 'Connexion',
+    path: '/connexion',
+    component: Connexion,
+},
+  {
+    path: '/Editback',
+    name: 'Editback',
+    component: EditbackVue,
+  },
+  {
+    path: '/postimage',
+    name: 'Postimage',
+    component: postimageVue,
+  },
   {
     path: '/',
     name: 'Home',

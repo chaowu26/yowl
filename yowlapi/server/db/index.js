@@ -23,6 +23,20 @@ YOWLdb.all = () => {
     });
 };
 
+
+// show post by ID
+
+YOWLdb.postbyid = () => {
+    return new Promise ((resolve, reject) => {
+        pool.query('Select * from users INNER JOIN posts ON users.username = posts.name;', (err, results)=> {
+            if(err) {
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+
 // post a post 
 YOWLdb.post = (title, content) => {
     return new Promise ((resolve, reject) => {
@@ -121,14 +135,15 @@ YOWLdb.commentoncomment = (name, comment,parent_id) => {
 };
 
 // update post by id
-YOWLdb.updatepost = (title, content,req) => {
+YOWLdb.updatepost = (title,content,req) => {
     return new Promise ((resolve, reject) => {
-        console.log('UPDATE posts SET title =' + title, 'content = ' + content , 'WHERE id = ' + req);
-        pool.query('UPDATE posts SET title =' + title, 'content = ' + content , 'WHERE id = ' + req, (err) => {
+        //console.log('UPDATE posts SET title =' + title, 'content =' + content , 'WHERE id =' + req);
+        pool.query('UPDATE posts SET title=\"' + title +  '\", content=\"' + content + '\" WHERE id=' + req, function (err,result) {
             if(err) {
                 return reject(err);
             }
         });
+        console.log('UPDATE posts SET title =' + title, 'content =' + content , 'WHERE id =' + req);
     });
 };
 

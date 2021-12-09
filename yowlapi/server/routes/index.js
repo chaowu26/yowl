@@ -37,6 +37,28 @@ router.post('/posts',async(req,res)=> {
   }
 });
 
+router.get('/postbyid',async(req,res,next)=> {
+  try {
+      let result = await db.postbyid();
+      res.json(result);
+  }catch(err) {
+      console.log(err);
+      res.sendStatus(500);
+  }
+});
+
+router.put('/editpost',async(req,res)=> {
+  try {
+      console.log(req.body["title"])
+      let result = await db.updatepost(req.body["title"],req.body["content"],req.body["id"]);
+      res.send(result);
+      console.log(req.body);
+     
+  }catch(err) {
+      console.log(err);
+     
+  }
+});
 
 // router.get('/posts/:id', function (req, res) {
 //     res.send('post'+req.params.id);
