@@ -144,6 +144,44 @@ YOWLdb.deletepost = (req) => {
     });
 };
 
+// Add new user
+YOWLdb.postuser = async (callback, reject, username, email, birth, password, country) => {
+    
+    await pool.query('INSERT INTO users (username, email, birth, password, country) VALUES ("' + username + '","' + email + '", "' + birth +'", "' + password +'", "' + country +'");', (err, results)=> {
+        if(err) {
+            console.log("ERR => ", err)
+            reject(err)
+        } else {
+            console.log("RESULT => ", results)
+            callback(results)
+        }
+    });
+};
 
+// Login
+YOWLdb.login = (email, password) => {
+    return new Promise ((resolve, reject) => {
+        pool.query('Select password, username FROM users where email = "' + email +'" and password = "'+ password+'"', (err, results) => {
+            if(err){
+                return reject(err);
+            } return resolve(results);
+        })
+    })
+}
+
+// Update User's informations
+YOWLdb.updateUser = (username, email, birth, password, country, user_id) => {
+    return new Promise ((resolve, reject) => {
+        pool.query('UPDATE users SET username='+ username,' email ='+ email, 'birth='+ birth, 'password='+password, 'country='+country, 'WHERE id='+user_id, (err, résults)=> {
+            if(err) {
+                console.log("ERR => ", err)
+                 return reject(err)
+            } else {
+                console.log("RESULT => ", results)
+                return resolve(results) 
+            }
+        })
+    })
+}
 
 module.exports = YOWLdb;

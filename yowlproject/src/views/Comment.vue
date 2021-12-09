@@ -1,5 +1,5 @@
 <template>
-
+<div>
 <div class=post>
     <h3>{{post["name"]}}.Posted at {{post["created_time"]}}</h3>
      <h2>{{post["title"]}}</h2>  
@@ -36,6 +36,7 @@
 
             </ul>
   </div>
+</div>
 </template>
 
 <script>
