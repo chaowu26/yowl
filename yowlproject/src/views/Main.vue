@@ -28,6 +28,7 @@
           <p>Save</p>
           <p>...</p>
            </router-link>
+          
     </ul> 
     </div>
 </template>
@@ -79,10 +80,12 @@ export default {
                 .post('http://localhost:3000/comments',
                     { comment: this.commentcontent })
                 .then(function (response) {
-                    console.log(response.id);
+                    console.log(response);
                 })
         }
     },
+
+
 }
 </script>
 

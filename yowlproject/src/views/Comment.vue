@@ -16,6 +16,9 @@
             <button @click="addcomments()" type="button">
                 Comment
             </button>
+                  <button @click="deletepost()" type="button">
+                Delete
+            </button>
                 <div>
             <ul class="post" v-for="comment in comments" v-bind:key="comment.id">   
             <li>{{comment.name}}</li>
@@ -26,6 +29,8 @@
               <button @click="addcomments()" type="button">
                 Comment
             </button>
+          
+            
             </router-link>
 
           <p>Like</p>
@@ -91,6 +96,13 @@ methods: {
   })
   } 
 },
+deletepost() {
+       axios
+       .delete(`http://localhost:3000/posts/` + this.$route.query.id)
+           .then(function (response) {
+                    console.log(response);
+                })
+    }
 
 }  
 </script>
